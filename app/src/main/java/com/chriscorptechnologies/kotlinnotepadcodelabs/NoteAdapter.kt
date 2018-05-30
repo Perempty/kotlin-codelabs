@@ -37,7 +37,7 @@ class NoteAdapter(val notes: List<Note>, val itemClickListener: View.OnClickList
     }
 
     override fun getItemCount(): Int {
-        notes.size
+        return notes.size
     }
 
 
