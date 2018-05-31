@@ -1,11 +1,11 @@
 package com.chriscorptechnologies.kotlinnotepadcodelabs
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_note_list.*
 
 class NoteListActivity : AppCompatActivity(), View.OnClickListener {
@@ -34,8 +34,17 @@ class NoteListActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View) {
 
         if(view.tag != null) {
-            Toast.makeText(this, "Click sur une note de la liste", Toast.LENGTH_SHORT).show()
+            showNoteDetail(view.tag as Int)
         }
     }
+
+    private fun showNoteDetail(noteIndex: Int) {
+        val note = notes[noteIndex]
+
+        val intent = Intent(this, NoteDetailActivity::class.java)
+        intent.putExtra(NoteDetailActivity.EXTRA_NOTE, note)
+        startActivity(intent)
+    }
+
 
 }
